@@ -91,7 +91,10 @@ class ResetPasswordView(APIView):
     
     def post(self, request, *args, **kwargs):
         user_id = request.query_params.get('user_id', None)
-        user_id = utils.decode(user_id)
+        try:
+            user_id = utils.decode(user_id)
+        except:
+            return Response({"error":"Wrong user id"}, status=status.HTTP_400_BAD_REQUEST)
         serializer = ResetPasswordSerializer(data=request.data)
         serializer.is_valid(raise_exception=True)
         user = User.objects.get(id=user_id)
