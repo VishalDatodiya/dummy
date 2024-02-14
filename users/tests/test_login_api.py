@@ -1,15 +1,9 @@
-from django.test import TestCase
-from rest_framework.test import APIClient
 from rest_framework import status
-from users.models import User
 from rest_framework_simplejwt.tokens import RefreshToken
+from .test_base import BaseAPITestCase
 from django.urls import reverse
 
-class LoginAPITestCase(TestCase):
-    def setUp(self):
-        self.client = APIClient()
-        self.user = User.objects.create_user(username='test_user', password='password123')
-
+class LoginAPITestCase(BaseAPITestCase):
     def test_login_success(self):
         url = reverse('login')  # Assuming the login endpoint name is 'login'
         data = {
@@ -40,6 +34,3 @@ class LoginAPITestCase(TestCase):
         self.assertNotIn('refresh', response.data)
         self.assertNotIn('access', response.data)
         self.assertNotIn('access_time_limit', response.data)
-
-    def tearDown(self):
-        self.user.delete()
