@@ -28,6 +28,17 @@ def invalid_password_response():
         "error" : messages.get_invalid_password_message(),
         "code" : 400,
     }
+def password_mismatched_response():
+    return {
+        "error" : messages.get_password_mismatched_message(),
+        "code" : 400,
+    }
+    
+def old_and_new_password_same_response():
+    return {
+        "error" : messages.get_old_and_new_password_same_message(),
+        "code" : 400,
+    }
 
 def failed_response():
     return {

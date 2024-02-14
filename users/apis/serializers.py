@@ -22,20 +22,20 @@ class ChangePasswordSerializer(serializers.Serializer):
     new_password1 = serializers.CharField(max_length=20)
     new_password2 = serializers.CharField(max_length=20)
     
-    def validate(self, data):
-        old_password = data.get("old_password")
-        new_password1 = data.get("new_password1")
-        new_password2 = data.get("new_password2")
+    # def validate(self, data):
+    #     old_password = data.get("old_password")
+    #     new_password1 = data.get("new_password1")
+    #     new_password2 = data.get("new_password2")
 
-        if new_password1 != new_password2:
-            raise serializers.ValidationError(
-                        "password must match. Please update your password."
-                    )
-        if old_password == new_password1:
-            raise serializers.ValidationError(
-                        "Your old password and new password are same. Please update your password."
-                    )
-        return data
+        # if new_password1 != new_password2:
+        #     raise serializers.ValidationError(
+        #                 "password must match. Please update your password."
+        #             )
+        # if old_password == new_password1:
+        #     raise serializers.ValidationError(
+        #                 "Your old password and new password are same. Please update your password."
+        #             )
+        # return data
 
 class ResetPasswordSerializer(serializers.Serializer):
     new_password1 = serializers.CharField(max_length=20)

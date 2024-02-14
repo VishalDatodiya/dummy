@@ -12,7 +12,13 @@ def get_password_successfully_changed_message():
     return "Password is successfully changed."
 
 def get_invalid_password_message():
-    return "Invalid password."
+    return "Current password is Invalid."
+
+def get_old_and_new_password_same_message():
+    return "Old and new password are same."
+
+def get_password_mismatched_message():
+    return "Password is not matched."
 
 def get_failed_message():
     return "Something went wrong, please try again."

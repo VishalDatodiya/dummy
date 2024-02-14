@@ -61,6 +61,15 @@ class ChangePasswordView(APIView):
         if not check_password(serializers.data["old_password"], user.password):
             response_data = responses.invalid_password_response()
             return Response(response_data, status=status.HTTP_400_BAD_REQUEST)
+        
+        if serializers.data["old_password"] == serializers.data["new_password1"]:
+            response_data = responses.old_and_new_password_same_response()
+            return Response(response_data, status=status.HTTP_400_BAD_REQUEST)
+        
+        if serializers.data["new_password1"] != serializers.data["new_password2"]:
+            response_data = responses.password_mismatched_response()
+            return Response(response_data, status=status.HTTP_400_BAD_REQUEST)
+        
         if user:
             user.set_password(serializers.validated_data["new_password1"])
             user.save()
